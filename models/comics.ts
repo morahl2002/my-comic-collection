@@ -1,5 +1,4 @@
 export interface ComicData {
-  id: number
   name: string
   writer: string
   artist: string
