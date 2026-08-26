@@ -1,5 +1,5 @@
 import db from './connection'
-
+import { Comic } from '../../models/comics'
 // TODO: GET ALL COMICS FROM THE DATABASE
 
 const columns = [
@@ -12,13 +12,21 @@ const columns = [
 ]
 
 export async function getAllComics() {
-  return db('comics')
+  const result = await db('comics')
     .select(...columns)
     .orderBy('id')
+  console.log(result)
+  return result as Comic[]
 }
 // TODO: GET ALL COMICS FROM THE DATABASE BY ID
-export async function getComicById(id) {
-  return db('comics').where({ id }).select().first
+export async function getComicById(id: number) {
+  const result = await db('comics')
+    .select(...columns)
+    .orderBy('id')
+    .where({ id })
+    .first()
+  console.log(result)
+  return result as Comic
 }
 // TODO: CREATE A COMIC
 export async function addComic(comic) {
