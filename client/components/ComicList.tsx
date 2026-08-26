@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getComics } from '../apis/comics'
+import DeleteComic from './DeleteComic'
 
 function ComicList() {
   const { data, isPending, isError } = useQuery({
@@ -13,7 +14,10 @@ function ComicList() {
   return (
     <>
       {data.map((comic) => (
-        <p key={comic.id}>{comic.name}</p>
+        <p key={comic.id}>
+          <DeleteComic />
+          {comic.name}
+        </p>
       ))}
     </>
   )
