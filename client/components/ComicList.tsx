@@ -15,7 +15,7 @@ function ComicList() {
     <>
       {data.map((comic) => (
         <p key={comic.id}>
-          <DeleteComic />
+          <DeleteComic id={comic.id} />
           {comic.name}
         </p>
       ))}
