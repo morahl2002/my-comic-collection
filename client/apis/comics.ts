@@ -14,8 +14,14 @@ export async function deleteComic(id: number) {
   await request.delete(`${rootURL}/comics/${id}`)
 }
 
-// CREATE NEW COMIC
+// POST: CREATE NEW COMIC
 export async function addComic(comic: ComicData) {
   const response = await request.post(`${rootURL}/comics`).send(comic)
+  return response.body as Comic
+}
+
+// PATCH: UPDATE COMIC
+export async function updateComic(id: number, comic: ComicData) {
+  const response = await request.patch(`${rootURL}/comics/${id}`).send(comic)
   return response.body as Comic
 }
