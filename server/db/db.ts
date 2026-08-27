@@ -49,7 +49,7 @@ export async function deleteComic(id: number) {
 export async function updateComic(id: number, data: Partial<ComicData>) {
   const result = await db('comics')
     .where({ id })
-    .insert({
+    .update({
       name: data.name,
       writer: data.writer,
       artist: data.artist,
