@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useId, useState, FormEvent, ChangeEvent } from 'react'
 import { ComicData } from '../../models/comics'
 
 interface Props extends Partial<ComicData> {
@@ -16,6 +16,9 @@ export default function ComicForm({
   submitLabel,
   onSubmit,
 }: Props) {
+  // wave came up with error for multiple form labels
+  // import useId hook to create unique ids for form control
+  const id = useId()
   const [formState, setFormState] = useState({
     name,
     writer,
@@ -43,60 +46,65 @@ export default function ComicForm({
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <label htmlFor="name" className="label">
+      <label htmlFor={`${id}-name`} className="label">
         Name
       </label>
       <input
         type="text"
-        id="name"
+        // add unique prefix
+        id={`${id}-name`}
         name="name"
         placeholder="Comic name"
         onChange={handleChange}
         value={formState.name}
       />
 
-      <label htmlFor="writer" className="label">
+      <label htmlFor={`${id}-writer`} className="label">
         Writer
       </label>
       <input
         type="text"
-        id="writer"
+        // add unique prefix
+        id={`${id}-writer`}
         name="writer"
         placeholder="Writer"
         onChange={handleChange}
         value={formState.writer}
       />
 
-      <label htmlFor="artist" className="label">
+      <label htmlFor={`${id}-artist`} className="label">
         Artist
       </label>
       <input
         type="text"
-        id="artist"
+        // add unique prefix
+        id={`${id}-artist`}
         name="artist"
         placeholder="Artist"
         onChange={handleChange}
         value={formState.artist}
       />
 
-      <label htmlFor="mainCharacter" className="label">
+      <label htmlFor={`${id}-mainCharacter`} className="label">
         Main Character
       </label>
       <input
         type="text"
-        id="mainCharacter"
+        // add unique prefix
+        id={`${id}-mainCharacter`}
         name="mainCharacter"
         placeholder="Main character"
         onChange={handleChange}
         value={formState.mainCharacter}
       />
 
-      <label htmlFor="publisher" className="label">
+      <label htmlFor={`${id}-publisher`} className="label">
         Publisher
       </label>
       <input
         type="text"
-        id="publisher"
+        // add unique prefix
+        id={`${id}-publisher`}
         name="publisher"
         placeholder="Publisher"
         onChange={handleChange}
