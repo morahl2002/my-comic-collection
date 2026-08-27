@@ -1,17 +1,18 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { ComicData } from '../../models/comics'
 
-interface Props extends ComicData {
+interface Props extends Partial<ComicData> {
   submitLabel: string
   onSubmit: (_: ComicData) => void
-}
+} // Change to Partial
 
 export default function ComicForm({
-  name,
-  writer,
-  artist,
-  mainCharacter,
-  publisher,
+  // add default values
+  name = '',
+  writer = '',
+  artist = '',
+  mainCharacter = '',
+  publisher = '',
   submitLabel,
   onSubmit,
 }: Props) {
