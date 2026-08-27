@@ -20,7 +20,7 @@ function DeleteComic(props: Props) {
   }
   return (
     <>
-      <button onClick={handleClick}>Delete {props.id}</button>
+      <button onClick={handleClick}>Delete</button>
     </>
   )
 }

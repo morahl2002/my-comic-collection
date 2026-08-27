@@ -15,22 +15,22 @@ function ComicList() {
   if (isError) return <p>Error</p>
 
   return (
-    <>
+    <ul className="comic-list">
       {data.map((comic) =>
         editingId === comic.id ? (
-          <div key={comic.id}>
+          <li key={comic.id} className="comic-row comic-row-editing">
             <EditComic comic={comic} onSuccess={() => setEditingId(null)} />
             <button onClick={() => setEditingId(null)}>Cancel</button>
-          </div>
+          </li>
         ) : (
-          <p key={comic.id}>
+          <li key={comic.id} className="comic-row">
             <DeleteComic id={comic.id} />
             <button onClick={() => setEditingId(comic.id)}>Edit</button>
             {comic.name}
-          </p>
+          </li>
         ),
       )}
-    </>
+    </ul>
   )
 }
 
