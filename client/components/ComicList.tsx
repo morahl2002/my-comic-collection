@@ -19,7 +19,7 @@ function ComicList() {
       {data.map((comic) =>
         editingId === comic.id ? (
           <div key={comic.id}>
-            <EditComic comic={comic} />
+            <EditComic comic={comic} onSuccess={() => setEditingId(null)} />
             <button onClick={() => setEditingId(null)}>Cancel</button>
           </div>
         ) : (
