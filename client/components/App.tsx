@@ -1,3 +1,4 @@
+import AddComic from './AddComic'
 import ComicList from './ComicList'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
         <h1>My Collection</h1>
       </header>
       <section className="main">
+        <AddComic />
         <ComicList />
       </section>
     </>
