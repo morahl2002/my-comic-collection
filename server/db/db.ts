@@ -17,7 +17,9 @@ async function getCoverUrl(name: string): Promise<string | null> {
     headers: { 'User-Agent': 'my-fullstack-collection' }, // ComicVine api needs a user agent
   })
   const data = await response.json()
-  return data.results?.[0]?.image?.original_url ?? null
+  // return data.results?.[0]?.image?.original_url ?? null
+  // medium_url used for cards rather than full sized display to alleviate loading size
+  return data.results?.[0]?.image?.medium_url ?? null
 }
 
 // TODO: GET ALL COMICS FROM THE DATABASE
