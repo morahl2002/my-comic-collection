@@ -8,7 +8,7 @@ const columns = [
   'artist',
   'main_character',
   'publisher',
-  'cover_url',
+  'cover_url as coverUrl',
 ]
 
 async function getCoverUrl(name: string): Promise<string | null> {

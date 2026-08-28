@@ -118,6 +118,7 @@ body {
   background: var(--color-bg);
   border-radius: 6px;
   margin-bottom: 0.5rem;
+  object-fit: cover;
 }
 
 /* .comic-row button {
