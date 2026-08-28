@@ -3,13 +3,14 @@ import { addComic } from '../apis/comics'
 import { ComicData } from '../../models/comics'
 import ComicForm from './ComicForm'
 
-function AddComic() {
+function AddComic({ onSuccess }: { onSuccess?: () => void }) {
   const queryClient = useQueryClient()
 
   const addMutation = useMutation({
     mutationFn: (data: ComicData) => addComic(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comics'] })
+      onSuccess?.()
     },
   })
 
