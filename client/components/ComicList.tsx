@@ -3,6 +3,7 @@ import { getComics } from '../apis/comics'
 import DeleteComic from './DeleteComic'
 import EditComic from './EditComic'
 import { useState } from 'react'
+import Modal from './Modal'
 
 function ComicList() {
   const [editingId, setEditingId] = useState<number | null>(null)
@@ -14,23 +15,40 @@ function ComicList() {
   if (isPending) return <p>loading...</p>
   if (isError) return <p>Error</p>
 
+  const editingComic = data.find((comic) => comic.id === editingId)
+
   return (
-    <ul className="comic-list">
-      {data.map((comic) =>
-        editingId === comic.id ? (
-          <li key={comic.id} className="comic-row comic-row-editing">
-            <EditComic comic={comic} onSuccess={() => setEditingId(null)} />
-            <button onClick={() => setEditingId(null)}>Cancel</button>
+    <>
+      <ul className="comic-grid">
+        {data.map((comic) => (
+          <li key={comic.id} className="comic-card">
+            <div className="comic-cover" aria-hidden="true" />
+            <p className="comic-publisher">{comic.publisher}</p>
+            <p className="comic-title">{comic.name}</p>
+            <p className="comic-credits">
+              {comic.writer} | {comic.artist}
+            </p>
+            <div className="comic-card-buttons">
+              <DeleteComic id={comic.id} />
+              <button
+                onClick={() => setEditingId(comic.id)}
+                aria-label={`Edit ${comic.name}`}
+              >
+                Edit
+              </button>
+            </div>
           </li>
-        ) : (
-          <li key={comic.id} className="comic-row">
-            {comic.name}
-            <DeleteComic id={comic.id} />
-            <button onClick={() => setEditingId(comic.id)}>Edit</button>
-          </li>
-        ),
+        ))}
+      </ul>
+      {editingComic && (
+        <Modal title="Edit Comic" onClose={() => setEditingId(null)}>
+          <EditComic
+            comic={editingComic}
+            onSuccess={() => setEditingId(null)}
+          />
+        </Modal>
       )}
-    </ul>
+    </>
   )
 }
 
