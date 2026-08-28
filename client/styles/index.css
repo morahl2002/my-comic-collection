@@ -103,18 +103,57 @@ body {
 }
 
 /* comic list */
-.comic-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+.comic-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-.comic-row button {
+.comic-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+/* .comic-row button {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+} */
+
+/* .comic-row button:hover {
+  background: var(--color-bg);
+} */
+
+/* .comic-row .delete-btn {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.comic-row .delete-btn:hover {
+  background: var(--color-danger);
+  color: white;
+} */
+
+.comic-title {
+  font-weight: bold;
+}
+
+.comic-card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.comic-card-buttons button {
   border: 1px solid var(--color-border);
   background: transparent;
   border-radius: 6px;
@@ -123,16 +162,16 @@ body {
   cursor: pointer;
 }
 
-.comic-row button:hover {
+.comic-card-buttons button:hover {
   background: var(--color-bg);
 }
 
-.comic-row .delete-btn {
+.comic-card-buttons .delete-btn {
   color: var(--color-danger);
   border-color: var(--color-danger);
 }
 
-.comic-row .delete-btn:hover {
+.comic-card-buttons .delete-btn:hover {
   background: var(--color-danger);
   color: white;
 }

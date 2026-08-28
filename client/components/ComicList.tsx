@@ -22,7 +22,12 @@ function ComicList() {
       <ul className="comic-grid">
         {data.map((comic) => (
           <li key={comic.id} className="comic-card">
-            <div className="comic-cover" aria-hidden="true" />
+            <img
+              className="comic-cover"
+              src={`https://placehold.co/300x300?text=${encodeURIComponent(comic.name)}`}
+              alt=""
+              aria-hidden="true"
+            />
             <p className="comic-publisher">{comic.publisher}</p>
             <p className="comic-title">{comic.name}</p>
             <p className="comic-credits">
