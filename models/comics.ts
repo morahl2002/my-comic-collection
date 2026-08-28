@@ -8,4 +8,5 @@ export interface ComicData {
 
 export interface Comic extends ComicData {
   id: number
+  coverUrl: string | null
 }
