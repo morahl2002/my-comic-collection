@@ -8,7 +8,18 @@ const columns = [
   'artist',
   'main_character',
   'publisher',
+  'cover_url',
 ]
+
+async function getCoverUrl(name: string): Promise<string | null> {
+  const url = `https://comicvine.gamespot.com/api/search/?api_key=${process.env.COMICVINE_API_KEY}&format=json&query=${encodeURIComponent(name)}&resources=volume`
+  const response = await fetch(url, {
+    headers: { 'User-Agent': 'my-fullstack-collection' }, // ComicVine api needs a user agent
+  })
+  const data = await response.json()
+  return data.results?.[0]?.image?.original_url ?? null
+}
+
 // TODO: GET ALL COMICS FROM THE DATABASE
 export async function getAllComics() {
   const result = await db('comics')
@@ -29,6 +40,7 @@ export async function getComicById(id: number) {
 }
 // TODO: CREATE A COMIC
 export async function addComic(data: ComicData) {
+  const coverUrl = await getCoverUrl(data.name)
   const result = await db('comics')
     .insert({
       name: data.name,
@@ -36,6 +48,7 @@ export async function addComic(data: ComicData) {
       artist: data.artist,
       main_character: data.mainCharacter,
       publisher: data.publisher,
+      cover_url: coverUrl,
     })
     .returning(columns)
 
