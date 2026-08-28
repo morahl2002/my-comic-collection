@@ -1,14 +1,14 @@
 :root {
-  --color-bg: #f7f5f2;
+  --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-border: #e0ddd6;
-  --color-text: #2b2b2b;
-  --color-muted: #6b6b6b;
-  --color-accent: #7a3e3e;
-  --color-accent-hover: #5f2f2f;
-  --color-danger: #b23b3b;
-  --color-danger-hover: #8f2e2e;
-  --radius: 8px;
+  --color-muted: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-muted-fg: #64748b;
+  --color-accent: #0052ff;
+  --color-accent-fg: #ffffff;
+  --color-danger: #dc2626;
+  --radius: 0.5rem;
 }
 
 * {
@@ -17,19 +17,15 @@
 
 body {
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
 }
 
 .header {
   padding: 1.5rem 2rem;
-  border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .header h1 {
@@ -38,7 +34,7 @@ body {
 }
 
 .main {
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   display: flex;
@@ -58,9 +54,9 @@ body {
 }
 
 .label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-muted);
+  color: var(--color-muted-fg);
   margin-bottom: -0.4rem;
 }
 
@@ -69,9 +65,10 @@ body {
 .form select {
   padding: 0.5rem 0.65rem;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-size: 1rem;
   font-family: inherit;
+  color: var(--color-text);
 }
 
 .form input:focus,
@@ -86,23 +83,24 @@ body {
   margin-top: 0.5rem;
   padding: 0.5rem 1.25rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: var(--color-accent);
-  color: white;
+  color: var(--color-accent-fg);
+  font-weight: 500;
   font-size: 0.95rem;
   cursor: pointer;
 }
 
 .form button:hover {
-  background: var(--color-accent-hover);
+  opacity: 0.9;
 }
 
 .form button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* comic list */
+/* comic grid */
 .comic-grid {
   list-style: none;
   margin: 0;
@@ -112,59 +110,57 @@ body {
   gap: 1rem;
 }
 
+.comic-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
 .comic-cover {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: var(--color-bg);
-  border-radius: 6px;
+  background: var(--color-muted);
+  border-radius: var(--radius);
   margin-bottom: 0.5rem;
   object-fit: cover;
 }
 
-/* .comic-row button {
-  border: 1px solid var(--color-border);
-  background: transparent;
-  border-radius: 6px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-} */
-
-/* .comic-row button:hover {
-  background: var(--color-bg);
-} */
-
-/* .comic-row .delete-btn {
-  color: var(--color-danger);
-  border-color: var(--color-danger);
+.comic-publisher {
+  margin: 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--color-muted-fg);
 }
 
-.comic-row .delete-btn:hover {
-  background: var(--color-danger);
-  color: white;
-} */
-
 .comic-title {
-  font-weight: bold;
+  margin: 0.2rem 0 0.1rem;
+  font-weight: 600;
+}
+
+.comic-credits {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-muted-fg);
 }
 
 .comic-card-buttons {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .comic-card-buttons button {
   border: 1px solid var(--color-border);
   background: transparent;
-  border-radius: 6px;
+  color: var(--color-text);
+  border-radius: var(--radius);
   padding: 0.3rem 0.7rem;
   font-size: 0.85rem;
   cursor: pointer;
 }
 
 .comic-card-buttons button:hover {
-  background: var(--color-bg);
+  background: var(--color-muted);
 }
 
 .comic-card-buttons .delete-btn {
@@ -172,7 +168,66 @@ body {
   border-color: var(--color-danger);
 }
 
-.comic-card-buttons .delete-btn:hover {
-  background: var(--color-danger);
-  color: white;
+/* add comic button */
+.add-comic-btn {
+  align-self: flex-start;
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: var(--color-accent-fg);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.add-comic-btn:hover {
+  opacity: 0.9;
+}
+
+/* modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  width: min(420px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* focus ring */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
