@@ -24,9 +24,9 @@ function ComicList() {
           </li>
         ) : (
           <li key={comic.id} className="comic-row">
+            {comic.name}
             <DeleteComic id={comic.id} />
             <button onClick={() => setEditingId(comic.id)}>Edit</button>
-            {comic.name}
           </li>
         ),
       )}
