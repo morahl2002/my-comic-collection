@@ -4,7 +4,24 @@ import { ComicData } from '../../models/comics'
 interface Props extends Partial<ComicData> {
   submitLabel: string
   onSubmit: (_: ComicData) => void
-} // Change to Partial
+}
+
+// !! FOR ASSESSMENT CP02 REFACTORING !! //
+// Replaces five duplicated code blocks with a single
+// fields array + .map()
+
+const fields: { key: keyof ComicData; label: string; placeholder: string }[] = [
+  // AI was used to fill in these objects to save time
+  { key: 'name', label: 'Name', placeholder: 'Comic name' },
+  { key: 'writer', label: 'Writer', placeholder: 'Writer' },
+  { key: 'artist', label: 'Artist', placeholder: 'Artist' },
+  {
+    key: 'mainCharacter',
+    label: 'Main Character',
+    placeholder: 'Main character',
+  },
+  { key: 'publisher', label: 'Publisher', placeholder: 'Publisher' },
+]
 
 export default function ComicForm({
   // add default values
@@ -45,72 +62,24 @@ export default function ComicForm({
   }
 
   return (
+    // FOR ASSESSMENT CPO2 REFACTORING
+    // Creaing a map instead of writing five similar blocks of code
     <form onSubmit={handleSubmit} className="form">
-      <label htmlFor={`${id}-name`} className="label">
-        Name
-      </label>
-      <input
-        type="text"
-        // add unique prefix
-        id={`${id}-name`}
-        name="name"
-        placeholder="Comic name"
-        onChange={handleChange}
-        value={formState.name}
-      />
-
-      <label htmlFor={`${id}-writer`} className="label">
-        Writer
-      </label>
-      <input
-        type="text"
-        // add unique prefix
-        id={`${id}-writer`}
-        name="writer"
-        placeholder="Writer"
-        onChange={handleChange}
-        value={formState.writer}
-      />
-
-      <label htmlFor={`${id}-artist`} className="label">
-        Artist
-      </label>
-      <input
-        type="text"
-        // add unique prefix
-        id={`${id}-artist`}
-        name="artist"
-        placeholder="Artist"
-        onChange={handleChange}
-        value={formState.artist}
-      />
-
-      <label htmlFor={`${id}-mainCharacter`} className="label">
-        Main Character
-      </label>
-      <input
-        type="text"
-        // add unique prefix
-        id={`${id}-mainCharacter`}
-        name="mainCharacter"
-        placeholder="Main character"
-        onChange={handleChange}
-        value={formState.mainCharacter}
-      />
-
-      <label htmlFor={`${id}-publisher`} className="label">
-        Publisher
-      </label>
-      <input
-        type="text"
-        // add unique prefix
-        id={`${id}-publisher`}
-        name="publisher"
-        placeholder="Publisher"
-        onChange={handleChange}
-        value={formState.publisher}
-      />
-
+      {fields.map((field) => (
+        <div key={field.key}>
+          <label htmlFor={`${id}-${field.key}`} className="label">
+            {field.label}
+          </label>
+          <input
+            type="text"
+            id={`${id}-${field.key}`}
+            name={field.key}
+            placeholder={field.placeholder}
+            onChange={handleChange}
+            value={formState[field.key]}
+          />
+        </div>
+      ))}
       <button>{submitLabel}</button>
     </form>
   )

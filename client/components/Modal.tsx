@@ -11,7 +11,8 @@ function Modal({ title, onClose, children }: ModalProps) {
 
   useEffect(() => {
     closeButtonRef.current?.focus()
-
+    // !! FOR ASSESSMENT CP02 !!
+    //  Adding function for keyboard users to press escape to exit the modal
     function handleKeyDown(evt: KeyboardEvent) {
       if (evt.key === 'Escape') onClose()
     }
