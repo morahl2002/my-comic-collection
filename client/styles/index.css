@@ -53,11 +53,18 @@ body {
   padding: 1.5rem;
 }
 
+.form > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .label {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-muted-fg);
-  margin-bottom: -0.4rem;
+  display: block;
+  margin-bottom: 0.35rem;
 }
 
 .form input,
@@ -220,6 +227,12 @@ select:focus-visible {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.modal .form {
+  border: none;
+  padding: 0;
+  gap: 0.75rem;
 }
 
 .modal-header h2 {
