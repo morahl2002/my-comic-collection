@@ -90,5 +90,7 @@
     "esbuild@0.28.2": true,
     "@parcel/watcher@2.6.0": true,
     "sqlite3@5.1.7": true
-  }
+  },
+  "render:build": "npm install && npm run build && npm prune --omit=dev && NODE_ENV='production' npm run knex migrate:latest",
+  "render:start": "node dist/server.js"
 }
