@@ -79,7 +79,8 @@ body {
 }
 
 /* !! FOR ASSESSMENT CPO2 !!  */
-/* Throughout the app, every interactive element has a visible focus state so the app is usable via keyboard navigation */
+/* Throughout the app, every interactive element has a visible 
+focus state so the app is usable via keyboard navigation */
 .form input:focus,
 .form textarea:focus,
 .form select:focus {
