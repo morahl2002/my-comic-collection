@@ -31,8 +31,10 @@
   },
   "dependencies": {
     "@devacademy/eslint-config": "^1.10.2",
+    "dotenv": "^17.4.2",
     "express": "^4.22.1",
     "knex": "^2.5.1",
+    "pg": "^8.23.0",
     "sqlite3": "^5.1.7",
     "superagent": "^10.2.2"
   },
@@ -82,5 +84,13 @@
     "semi": false,
     "singleQuote": true
   },
-  "browserslist": "> 2%, not dead"
+  "browserslist": "> 2%, not dead",
+  "allowScripts": {
+    "esbuild@0.27.7": true,
+    "esbuild@0.28.2": true,
+    "@parcel/watcher@2.6.0": true,
+    "sqlite3@5.1.7": true
+  },
+  "render:build": "npm install && npm run build && npm prune --omit=dev && NODE_ENV='production' npm run knex migrate:latest",
+  "render:start": "node dist/server.js"
 }
